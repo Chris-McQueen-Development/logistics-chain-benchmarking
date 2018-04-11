@@ -1,0 +1,58 @@
+namespace outbound.logistics.auction
+
+import outbound.logistics.participant.TransportationCompany
+import outbound.logistics.vehicle.Route
+import outbound.logistics.participant.LogisticsTeam
+import outbound.logistics.vehicle.Vehicle
+import outbound.logistics.vehicle.Markets
+
+asset TransportContractAuction identified by transportContractAuctionId {
+  o String transportContractAuctionId
+  o Route route
+  o Double minimumBid 
+  o DateTime expectedDeliveryDate 
+  o Markets[] markets optional
+  --> Vehicle vehicle
+  --> LogisticsTeam managingLogisticsTeam
+  o Boolean auctionComplete default=false
+  o DateTime endDate optional
+}
+
+asset TransportContract identified by transportContractId {
+  o String transportContractId
+  o DateTime creationDate
+  o Double paymentAmount
+  o Route route
+  --> Vehicle vehicle
+  --> TransportationCompany transportationCompany
+  --> LogisticsTeam managingLogisticsTeam
+  o Boolean fulfilled default=false
+}
+
+transaction StartAuction {
+  o Route route
+  o Double minimumBid 
+  o DateTime expectedDeliveryDate 
+  o String auctionId
+  o Markets[] markets optional
+  --> Vehicle vehicle
+  --> LogisticsTeam managingLogisticsTeam
+}
+
+transaction Bid {
+  o Double bidValue
+  --> TransportContractAuction auction
+  --> TransportationCompany bidder
+}
+
+transaction EndAuction {
+  --> TransportContractAuction auction
+  --> LogisticsTeam logisticsTeamEndingAuction
+  o String contractIdToCreate
+}
+
+event NewBid {
+  o Double bidValue
+  --> TransportContractAuction auction
+  --> TransportationCompany bidder
+}

@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+<head>
+    <title>Caliper Report</title>
+    <meta charset="UTF-8"/>
+    <style type="text/css">
+        .left-column {
+            position: fixed;
+            width:20%;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -khtml-border-radius: 5px;
+        }
+        .right-column {
+            margin-left: 22%;
+            width:60%;
+        }
+        .left-column ul,h2 {
+            display: block;
+            margin: 10px;
+            padding: 0;
+            list-style: none;
+        }
+        .left-column ul{
+            border-top: 1px solid #d9d9d9;
+            font-size: 14px;
+        }
+        .left-column li{
+            margin-bottom: 5px;
+            color: #5e6b73;
+        }
+        .left-column h3 {
+            border-left: 5px solid #009a61;
+        }
+        .right-column>div {
+            border-top: 1px solid #d9d9d9;
+        }
+        .right-column table {
+            font-family: verdana,arial,sans-serif;
+            font-size:11px;
+            color:#333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        .right-column th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #f2f2f2;
+        }
+        .right-column td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+        .tag {
+            display: inline-block;
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            background-color: rgba(1,126,102,0.08);
+            font-family: verdana,arial,sans-serif;
+            font-size:11px;
+            color: #017E66;
+            text-align: center;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -khtml-border-radius: 5px;
+        }
+        pre {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -khtml-border-radius: 5px;
+            overflow:auto;
+            max-height:300px;
+            font-size:12px;
+        }
+    </style>
+</head>
+<body>
+
+<main>
+    <div class="left-column">
+        <h2>Caliper Report</h2>
+        <ul>
+            <h3>&nbspBasic information</h3>
+            <li><strong>DLT: &nbsp</strong><span>composer</span></li>
+            <li><strong>Benchmark: &nbsp</strong><span>Composer Performance test</span></li>
+            <li><strong>Description: &nbsp</strong><span>This is an example Composer perf test</span></li>
+            <li><strong>Test Rounds: &nbsp</strong><span>1</span></li>
+            <li><a href="#benchmarkInfo">Details</a></li>
+        </ul>
+        <ul>
+            <h3>&nbspBenchmark results</h3>
+            <li><a href="#benchmarksummary">Summary</a></li>
+            <li><a href="#round 0">round 0</a></li>
+        </ul>
+        <ul>
+            <h3>&nbspSystem Under Test</h3>
+            <li><a href="#sutdetails">Details</a></li>
+        </ul>
+    </div>
+
+    <div class="right-column">
+        <div id="benchmarksummary">
+            <table>
+                <h3>Summary</h3>
+                <tr>
+                     <th>Test</th> <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate</th> <th>Max Latency</th> <th>Min Latency</th> <th>Avg Latency</th> <th>75%ile Latency</th> <th>Throughput</th>
+                </tr>
+
+            </table>
+        </div>
+        <div id="round 0">
+            <h3>round 0&nbsp-&nbspoutbound-logistics</h3>
+            <strong class="tag">performance metrics</strong>
+            <table>
+                <tr>
+                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate</th> <th>Max Latency</th> <th>Min Latency</th> <th>Avg Latency</th> <th>75%ile Latency</th> <th>Throughput</th>
+                </tr>
+                <tr>
+                    
+                </tr>
+            </table>
+            <strong class="tag">resource consumption</strong>
+            <table>
+                <tr>
+                     <th>TYPE</th> <th>NAME</th> <th>Memory(max)</th> <th>Memory(avg)</th> <th>CPU(max)</th> <th>CPU(avg)</th> <th>Traffic In</th> <th>Traffic Out</th>
+                </tr>
+                <tr>
+                     <td>Process</td> <td>node bench-client.js(avg)</td> <td>-</td> <td>-</td> <td>NaN%</td> <td>NaN%</td> <td>-</td> <td>-</td>
+                </tr>
+                <tr>
+                     <td>Docker</td> <td>dev-peer0.org2.example.co...0.0.1</td> <td>98.6MB</td> <td>97.6MB</td> <td>15.22%</td> <td>6.77%</td> <td>146.7KB</td> <td>119.4KB</td>
+                </tr>
+                <tr>
+                     <td>Docker</td> <td>dev-peer0.org1.example.co...0.0.1</td> <td>99.6MB</td> <td>98.7MB</td> <td>14.74%</td> <td>7.20%</td> <td>199.7KB</td> <td>218.8KB</td>
+                </tr>
+                <tr>
+                     <td>Docker</td> <td>peer0.org2.example.com</td> <td>293.1MB</td> <td>292.7MB</td> <td>11.35%</td> <td>5.51%</td> <td>499.3KB</td> <td>544.7KB</td>
+                </tr>
+                <tr>
+                     <td>Docker</td> <td>peer0.org1.example.com</td> <td>261.1MB</td> <td>260.7MB</td> <td>13.95%</td> <td>7.43%</td> <td>690.9KB</td> <td>851.9KB</td>
+                </tr>
+                <tr>
+                     <td>Docker</td> <td>ca.org1.example.com</td> <td>8.5MB</td> <td>8.4MB</td> <td>4.02%</td> <td>2.53%</td> <td>4.6KB</td> <td>3.6KB</td>
+                </tr>
+                <tr>
+                     <td>Docker</td> <td>orderer.example.com</td> <td>12.8MB</td> <td>12.3MB</td> <td>1.50%</td> <td>0.78%</td> <td>97.9KB</td> <td>166.1KB</td>
+                </tr>
+                <tr>
+                     <td>Docker</td> <td>ca.org2.example.com</td> <td>8.4MB</td> <td>8.4MB</td> <td>0.00%</td> <td>0.00%</td> <td>1.9KB</td> <td>0B</td>
+                </tr>
+                <tr>
+                     <td>Docker</td> <td>couchdb.org2.example.com</td> <td>104.4MB</td> <td>104.0MB</td> <td>46.84%</td> <td>22.94%</td> <td>136.4KB</td> <td>270.7KB</td>
+                </tr>
+                <tr>
+                     <td>Docker</td> <td>couchdb.org1.example.com</td> <td>108.3MB</td> <td>107.5MB</td> <td>58.27%</td> <td>28.20%</td> <td>170.5KB</td> <td>346.8KB</td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <h3>Test Environment</h3>
+            <strong class="tag">benchmark config</strong>
+            <pre id="benchmarkInfo">{
+  &quot;name&quot;: &quot;Composer Performance test&quot;,
+  &quot;description&quot;: &quot;This is an example Composer perf test&quot;,
+  &quot;clients&quot;: {
+    &quot;type&quot;: &quot;local&quot;,
+    &quot;number&quot;: 1
+  },
+  &quot;rounds&quot;: [
+    {
+      &quot;label&quot;: &quot;outbound-logistics&quot;,
+      &quot;txNumber&quot;: [
+        50
+      ],
+      &quot;trim&quot;: 0,
+      &quot;rateControl&quot;: [
+        {
+          &quot;type&quot;: &quot;fixed-rate&quot;,
+          &quot;opts&quot;: {
+            &quot;tps&quot;: 10
+          }
+        }
+      ],
+      &quot;arguments&quot;: {
+        &quot;testAssets&quot;: 50
+      },
+      &quot;callback&quot;: &quot;benchmark&#x2F;composer&#x2F;composer-samples&#x2F;outbound-logistics.js&quot;
+    }
+  ]
+}</pre>
+            <strong class="tag">SUT</strong>
+            <pre id="sutdetails">not provided</pre>
+        </div>
+    </div>
+
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+namespace outbound.logistics.vehicle
+
+import outbound.logistics.participant.Plant
+import outbound.logistics.participant.Dealer
+import outbound.logistics.participant.Address
+import outbound.logistics.participant.Node
+import outbound.logistics.participant.TransportationCompany
+import outbound.logistics.auction.TransportContract
+
+
+/*
+* Assets
+*/
+abstract asset Vehicle identified by vin {
+  o String vin
+  o String brand
+  o String model
+  o DateTime manufacturedDate 
+  o TransportPlan transportPlan optional
+  --> Plant manufacturingPlant
+}
+ 
+asset Car extends Vehicle {
+
+}
+
+/*
+* Transactions
+*/
+transaction ManufactureCar {
+  o String vin
+  o String brand
+  o String model
+  o DateTime manufacturedDate
+  o String boot optional
+  o Integer door optional
+  --> Plant manufacturingPlant 
+}
+
+transaction AssignTransportPlan {
+  o String vin
+  o TransportPlan transportPlan
+}
+
+transaction TransportVehicleFulfilled {
+  o String transportContractId
+}
+
+/*
+* Concepts
+*/
+concept TransportPlan {
+  o Route[] routes
+  --> Node finalDestination
+  o DateTime lastUpdated 
+  o String buyerCode
+}
+
+concept Route {
+  o String routeId
+ --> Node from
+ --> Node to
+ --> TransportContract associatedContract optional
+ o Boolean routeComplete default=false optional 
+ o Markets market optional
+ o TransportType transportType optional
+}
+
+/*
+* Events
+*/
+event CarManufactured {
+  o String vin
+}
+
+/*
+* Enumerations
+*/
+enum Markets {
+  o UNITEDKINGDOM
+  o NETHERLANDS
+  o FRANCE
+  o GERMANY
+  o ITALY
+  o JAPAN
+  o ALL
+}
+
+enum TransportType {
+  o Truck
+  o Ship
+  o Plane
+}

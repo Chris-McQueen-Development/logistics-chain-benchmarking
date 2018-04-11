@@ -1,0 +1,26 @@
+{
+  "name": "outbound-logistics",
+  "version": "0.0.1",
+  "description": "A Vehicle Outbound Logistics Network",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "author": "Chris McQueen",
+  "email": "c.mcqueen@newcastle.ac.uk",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "composer-admin": "^0.19.0",
+    "composer-cli": "^0.19.0",
+    "composer-client": "^0.19.0",
+    "composer-common": "^0.19.0",
+    "composer-connector-embedded": "^0.19.0",
+    "composer-cucumber-steps": "^0.19.0",
+    "chai": "latest",
+    "chai-as-promised": "latest",
+    "cucumber": "^2.2.0",
+    "eslint": "latest",
+    "nyc": "latest",
+    "mkdirp": "latest",
+    "mocha": "latest"
+  }
+}

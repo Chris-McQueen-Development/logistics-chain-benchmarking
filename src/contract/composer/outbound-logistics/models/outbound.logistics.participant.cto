@@ -1,0 +1,84 @@
+namespace outbound.logistics.participant 
+
+import outbound.logistics.vehicle.Markets
+
+/*
+* Participants
+*/
+abstract participant Company identified by companyId {
+  o String companyId
+}
+
+// Manufacturer e.g. Nissan, Renault, Dacia etc. //
+participant Manufacturer extends Company {
+  o String manufacturerName
+}
+
+abstract participant Node identified by nodeId {
+  o String nodeId
+  o String description optional
+  o Address address optional
+  --> Company owner
+}
+
+participant Plant extends Node {
+
+}
+
+participant Compound extends Node {
+
+}
+
+participant LogisticsTeam identified by logisticsId {
+  o String logisticsId
+  --> Manufacturer company
+}
+
+// Transportation company, e.g. Haulier, Port of Tyne //
+abstract participant TransportationCompany extends Company {
+  o String companyName
+  o Markets[] operatingMarkets optional
+}
+
+participant Haulier extends TransportationCompany {
+
+}
+
+participant PortCompany extends TransportationCompany {
+
+}
+
+participant Port extends Node {
+
+}
+
+participant Dealer extends Company {
+
+}
+
+participant Dealership extends Node {
+  
+}
+
+/*
+* Transactions
+*/
+transaction CreatePlant {
+  o String plantId
+  --> Manufacturer owner
+}
+
+/*
+* Concepts
+*/
+
+abstract concept Address {
+  o String street
+  o String city
+  o String country
+}
+
+concept UnitedKingdomAddress extends Address {
+  o String postcode
+}
+

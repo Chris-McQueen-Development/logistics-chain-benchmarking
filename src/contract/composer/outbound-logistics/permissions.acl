@@ -1,0 +1,237 @@
+rule AllParticipantsCanSeeAllParticipants {
+  description: "All participants should be aware of others in the network. TODO: Should hauliers be able to see each other?"
+  participant: "outbound.logistics.participant.*"
+  operation: READ
+  resource: "outbound.logistics.participant.*"
+  action: ALLOW
+}
+
+rule LogisticsTeamCanViewCars {
+  description: "A Logistics Team Can View All Cars"
+  participant: "outbound.logistics.participant.LogisticsTeam"
+  operation: READ, UPDATE
+  resource: "outbound.logistics.vehicle.Car"
+  action: ALLOW
+}
+
+rule PlantPermissions {
+  description: "A Manufacturing Plant can only manufacture cars."
+  participant: "outbound.logistics.participant.Plant"
+  operation: CREATE
+  resource: "outbound.logistics.vehicle.ManufactureCar"
+  transaction: "outbound.logistics.vehicle.ManufactureCar"
+  action: ALLOW
+}
+
+rule PlantPermissions2 {
+  description: "A Manufacturing Plant can see Cars. TODO: Only ones that it owns?"
+  participant: "outbound.logistics.participant.Plant"
+  operation: CREATE, READ
+  resource: "outbound.logistics.vehicle.Car"
+  action: ALLOW
+}
+
+rule PortCompanyCanCreatePorts {
+  description: "A Port Company can create more ports"
+  participant: "outbound.logistics.participant.PortCompany"
+  operation: CREATE, READ, UPDATE
+  resource: "outbound.logistics.participant.Port"
+  action: ALLOW
+}
+
+rule DealerCanCreateDealerships {
+  description: "A Port Company can create more ports"
+  participant: "outbound.logistics.participant.Dealer"
+  operation: CREATE, READ, UPDATE
+  resource: "outbound.logistics.participant.Dealership"
+  action: ALLOW
+}
+
+rule ParticipantsCanAddOtherParticipants {
+  description: "Participants can add other participants"
+  participant: "outbound.logistics.participant.*"
+  operation: CREATE
+  resource: "org.hyperledger.composer.system.AddParticipant"
+  action: ALLOW
+}
+
+rule ManufacturerCanCreatePlants {
+  description: "A Manufacturer is able to create [build] plants that belong to them"
+  participant: "outbound.logistics.participant.Manufacturer"
+  operation: CREATE
+  resource: "outbound.logistics.participant.CreatePlant"
+  transaction: "outbound.logistics.participant.CreatePlant"
+  action: ALLOW
+}
+
+rule LogisticsTeamCanAssignTransportPlans {
+  description: "Logistics team can assign transport plans to cars they manage"
+  participant: "outbound.logistics.participant.LogisticsTeam"
+  operation: CREATE
+  resource: "outbound.logistics.vehicle.AssignTransportPlan"
+  transaction: "outbound.logistics.vehicle.AssignTransportPlan"
+  action: ALLOW
+}
+
+rule LogisticsTeamCanControlAuctions {
+  description: "Logistics team can create auction related transactions"
+  participant: "outbound.logistics.participant.LogisticsTeam"
+  operation: ALL
+  resource: "outbound.logistics.auction.**"
+  action: ALLOW
+}
+
+rule LogisticsTeamCanManageAuctions {
+  description: "Logistics team can create auction related transactions"
+  participant: "outbound.logistics.participant.LogisticsTeam"
+  operation: ALL
+  resource: "outbound.logistics.auction.*"
+  transaction: "outbound.logistics.auction.*"
+  action: ALLOW
+}
+
+rule LogisticsTeamCanCreateAuctionContract {
+  description: "Logistics team can create transporation contracts"
+  participant: "outbound.logistics.participant.LogisticsTeam"
+  operation: ALL
+  resource: "outbound.logistics.auction.TransportContractAuction"
+  action: ALLOW
+}
+
+rule LogisticsTeamCanAddAssets {
+  description: "Logistics team can create transporation contracts"
+  participant: "outbound.logistics.participant.LogisticsTeam"
+  operation: CREATE
+  resource: "org.hyperledger.composer.system.AddAsset"
+  action: ALLOW
+}
+
+rule LogisticsTeamCanSeeBids { 
+  description: "Transportation companies have the ability to create bids"
+  participant: "outbound.logistics.participant.LogisticsTeam"
+  operation: READ
+  resource: "outbound.logistics.auction.Bid"
+  action: ALLOW
+}
+
+rule TransportationCompaniesCanSeeAuctions { 
+  description: "Transportation companies have the ability to view auctions"
+  participant: "outbound.logistics.participant.TransportationCompany"
+  operation: READ
+  resource: "outbound.logistics.auction.TransportContractAuction"
+  action: ALLOW
+}
+
+rule TransportationCompaniesCanBid { 
+  description: "Transportation companies have the ability to create bids"
+  participant: "outbound.logistics.participant.TransportationCompany"
+  operation: READ, CREATE
+  resource: "outbound.logistics.auction.Bid"
+  transaction: "outbound.logistics.auction.Bid"
+  action: ALLOW
+}
+
+rule TransportationCompaniesCanSeeBids { 
+  description: "Transportation companies have the ability to create bids"
+  participant: "outbound.logistics.participant.TransportationCompany"
+  operation: READ, CREATE
+  resource: "outbound.logistics.auction.Bid"
+  action: ALLOW
+}
+
+
+rule ManufacturerCanCreateCompounds {
+  description: "A Manufacturer is able to create [build] compounds that belong to them"
+  participant: "outbound.logistics.participant.Manufacturer"
+  operation: CREATE, READ, UPDATE
+  resource: "outbound.logistics.participant.Compound"
+  action: ALLOW
+}
+
+rule ManufacturerCanCreatePorts {
+  description: "A Manufacturer is able to create [build] ports that belong to them"
+  participant: "outbound.logistics.participant.Manufacturer"
+  operation: CREATE, READ, UPDATE
+  resource: "outbound.logistics.participant.Port"
+  action: ALLOW
+}
+
+rule ManufacturerCanReadPlants {
+  description: "A Manufacturer is able to see and create plants."
+  participant: "outbound.logistics.participant.Manufacturer"
+  operation: CREATE, READ, UPDATE
+  resource: "outbound.logistics.participant.Plant"
+  action: ALLOW
+}
+
+rule ManufacturerCanCreateLogisticsTeams {
+  description: "A Manufacturer is able to create Logistics Teams"
+  participant: "outbound.logistics.participant.Manufacturer"
+  operation: CREATE, READ, UPDATE
+  resource: "outbound.logistics.participant.LogisticsTeam"
+  action: ALLOW
+}
+
+rule ManufacturerCanViewCars {
+  description: "A Manufacturer is able view all cars"
+  participant: "outbound.logistics.participant.Manufacturer"
+  operation: READ
+  resource: "outbound.logistics.vehicle.Car"
+  action: ALLOW
+}
+
+rule ParticipantsCanCreateIdentities {
+  description: "Participants have the ability to add identities to other participants. This is limited to the CREATE rights they have from other rules."
+  participant: "outbound.logistics.participant.*"
+  operation: CREATE
+  resource: "org.hyperledger.composer.system.Identity"
+  action: ALLOW
+}
+
+rule ManufacturersCanIssueIdentities {
+  description: "Participants have the ability to issue identities to other participants. This is limited to the CREATE rights they have from other rules."
+  participant: "outbound.logistics.participant.*"
+  operation: CREATE
+  resource: "org.hyperledger.composer.system.IssueIdentity"
+  action: ALLOW
+}
+
+rule ParticipantPermissionHistorian {
+  description: "Can write HistorianRecord to the Historian"
+  participant: "outbound.logistics.participant.*"
+  operation: READ, CREATE
+  resource: "org.hyperledger.composer.system.HistorianRecord"
+  action: ALLOW  
+}
+
+rule ParticipantsCanUpdateAssets {
+  description:  "Can update assets by default. Which assets that can be updated will be determined by other rules."
+  participant: "ANY"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.UpdateAsset"
+  action: ALLOW
+}
+
+rule SystemACL {
+  description:  "Can READ the system registries"
+  participant: "ANY"
+  operation: READ
+  resource: "org.hyperledger.composer.system.**"
+  action: ALLOW
+}
+
+rule NetworkControlPermission {
+  description:  "give admin ALL access to system resources"
+  participant: "org.hyperledger.composer.system.NetworkAdmin"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.*"
+  action: ALLOW  
+}
+
+rule ParticipantRegistryControlPermission {
+  description:  "give admin ALL access to network participant types"
+  participant: "org.hyperledger.composer.system.NetworkAdmin"
+  operation: ALL
+  resource: "outbound.logistics.participant.*"
+  action: ALLOW  
+}

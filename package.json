@@ -1,0 +1,50 @@
+{
+  "name": "caliper",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Huawei-OSG/caliper"
+  },
+  "scripts": {
+    "test": "node ./scripts/test.js",
+    "list": "node ./scripts/list.js",
+    "startclient": "node ./src/comm/client/zoo-client.js"
+  },
+  "engines": {
+    "node": ">=8.10.0",
+    "npm": ">=5.5.0"
+  },
+  "engine-strict": true,
+  "engineStrict": true,
+  "dependencies": {
+    "cbor": "^3.0.3",
+    "commander": "^2.11.0",
+    "dockerode": "^2.5.0",
+    "fs-extra": "^4.0.2",
+    "jsrsasign": "^8.0.4",
+    "mustache": "^2.3.0",
+    "node-gyp": "^3.6.2",
+    "node-zookeeper-client": "^0.2.2",
+    "ora": "^1.2.0",
+    "pidusage": "^1.1.6",
+    "ps-node": "^0.1.6",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
+    "systeminformation": "^3.23.7",
+    "table": "^4.0.1",
+    "tape": "^4.8.0",
+    "tape-promise": "^1.1.0",
+    "composer-admin": "0.19.0",
+    "composer-client": "0.19.0",
+    "composer-common": "0.19.0",
+    "fabric-ca-client": "1.1.0",
+    "fabric-client": "1.1.0"
+  },
+  "license": "Apache-2.0",
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "https://github.com/hyperledger/caliper/blob/master/LICENSE"
+    }
+  ]
+}

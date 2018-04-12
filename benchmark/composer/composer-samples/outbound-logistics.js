@@ -83,7 +83,6 @@ module.exports.run = function () {
     transaction.manufacturedDate = new Date();
     transaction.manufacturingPlant = factory.newRelationship(namespace + '.participant', 'Plant', 'NMUK');
 
-    //console.log(transaction)
     return bc.bcObj.submitTransaction(busNetConnections.get('NMUK'), transaction);
 }
 

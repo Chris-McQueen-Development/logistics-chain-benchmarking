@@ -4,20 +4,20 @@
     "config": "network/fabric-v11/2-org-1-peer/composer.json"
   },
   "command" : {
-    "start": "docker-compose -f network/fabric-v11/2-org-1-peer/docker-compose.yaml up -d",
-    "end": "docker-compose -f network/fabric-v11/2-org-1-peer/docker-compose.yaml down;docker rm $(docker ps -aq);docker rmi $(docker images dev-* -q)"
+    "start": "docker-compose -f network/fabric-v11/2-org-2-peer/docker-compose.yaml up -d",
+    "end": "docker-compose -f network/fabric-v11/2-org-2-peer/docker-compose.yaml down;docker rm $(docker ps -aq);docker rmi $(docker images dev-* -q)"
   },
   "test": {
-    "name": "Composer Performance test",
-    "description" : "This is an example Composer perf test",
+    "name": "Outbound Logistics Test",
+    "description" : "Testing the performance of Manufacturing Vehicles",
     "clients": {
       "type": "local",
       "number": 1
     },
     "rounds": [{
               "label" : "outbound-logistics",
-              "txNumber" : [100],
-              "trim" : 10,
+              "txNumber" : [1000],
+              "trim" : 100,
               "rateControl" : [{"type": "fixed-rate", "opts": {"tps" : 10}}],
               "arguments": {},
               "callback" : "benchmark/composer/composer-samples/outbound-logistics.js"
